@@ -4,7 +4,7 @@ mkdir -p $HOME/code
 
 # install the most essential things
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
-sudo apt install cscope libncurses-dev libssl-dev bison flex -y
+sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
 
 # always need flatpak
 sudo apt install flatpak -y
