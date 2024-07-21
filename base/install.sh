@@ -11,6 +11,9 @@ sudo apt install flatpak -y
 sudo apt install gnome-software-plugin-flatpak -y
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
+# ripgrep and xclip
+sudo apt install ripgrep xclip -y
+
 # neovim!
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -21,5 +24,4 @@ mkdir -p $HOME/.config/nvim
 
 # clone my neovim config
 git clone https://github.com/urbanspr1nter/kickstart.nvim.git $HOME/.config/nvim
-
 
