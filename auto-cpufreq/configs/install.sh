@@ -6,6 +6,10 @@ cp ./power-lp.sh ~/code/tools/auto-cpufreq-scripts/power-lp
 chmod +x ~/code/tools/auto-cpufreq-scripts/power-lp
 echo "alias power-lp=\"sudo ~/code/tools/auto-cpufreq-scripts/power-lp\"" >> ~/.bashrc
 
+cp ./power-lpp.sh ~/code/tools/auto-cpufreq-scripts/power-lpp
+chmod +x ~/code/tools/auto-cpufreq-scripts/power-lpp
+echo "alias power-lpp=\"sudo ~/code/tools/auto-cpufreq-scripts/power-lpp\"" >> ~/.bashrc
+
 cp ./power-perf.sh ~/code/tools/auto-cpufreq-scripts/power-perf
 chmod +x ~/code/tools/auto-cpufreq-scripts/power-perf
 echo "alias power-perf=\"sudo ~/code/tools/auto-cpufreq-scripts/power-perf\"" >> ~/.bashrc
