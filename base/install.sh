@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "export XDG_CONFIG_HOME=\$HOME/.config" >> ~/.bashrc
+
 mkdir -p $HOME/code
 
 # elevating permissions
