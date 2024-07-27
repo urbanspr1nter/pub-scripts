@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "export XDG_CONFIG_HOME=\$HOME/.config" >> ~/.bashrc
+echo "export XDG_CONFIG_HOME=/home/$USER/.config" >> ~/.bashrc
 
 mkdir -p $HOME/code
 
@@ -10,6 +10,7 @@ sudo echo "Elevating..."
 # install the most essential things
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
 sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
+sudo apt install libglfw3-dev libcapstone-dev
 
 # increase file limits
 echo "Updating /etc/security/limits.conf ..."
@@ -40,7 +41,7 @@ sudo apt install ripgrep xclip -y
 
 # neovim!
 sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install neovim -y
 
@@ -57,7 +58,8 @@ git config --global user.name "Roger Ngo"
 # sudo apt install gnome-software-plugin-flatpak -y
 # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# copy udev rules
-sudo cp 80-l1-kvm-audio.rules /etc/udev/rules.d
+# create a known udev rule to address my KVM audio issues. see 80-l1-kvm-audio.rules for more info, but
+# this is just an inline version of that.
+sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="0016", ATTR{authorized}="0"' | sudo tee /etc/udev/rules.d/80-l1-kvm-audio.rules
 
 echo "You should reboot now."
