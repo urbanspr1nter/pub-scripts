@@ -58,8 +58,38 @@ git config --global user.name "Roger Ngo"
 # sudo apt install gnome-software-plugin-flatpak -y
 # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# create a known udev rule to address my KVM audio issues. see 80-l1-kvm-audio.rules for more info, but
-# this is just an inline version of that.
-sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="0016", ATTR{authorized}="0"' | sudo tee /etc/udev/rules.d/80-l1-kvm-audio.rules
+
+if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
+    # create a known udev rule to address my KVM audio issues. see 80-l1-kvm-audio.rules for more info, but
+    # this is just an inline version of that.
+    sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="0016", ATTR{authorized}="0"' | sudo tee /etc/udev/rules.d/80-l1-kvm-audio.rules
+fi 
+
+# Install docker if this system already does not have it
+if [ ! -f /usr/bin/docker ]; then
+    # setup the docker repos
+    sudo apt update
+    sudo apt install ca-certificates curl -y
+    sudo install -m 0755 -d /etc/apt/keyrings -y
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
+
+    sudo apt update
+
+
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+    # make non-root docker usage possible
+    sudo usermod -aG docker $USER
+
+    # refresh changes
+    newgrp docker
+fi
+
 
 echo "You should reboot now."
