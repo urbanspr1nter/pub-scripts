@@ -1,7 +1,11 @@
 #!/bin/bash
 
-echo "export XDG_CONFIG_HOME=/home/$USER/.config" >> ~/.bashrc
+# Configure XDG_CONFIG_HOME
+XDG_CONFIG_HOME=$HOME/.config
+mkdir -p $XDG_CONFIG_HOME
+echo "export XDG_CONFIG_HOME=$HOME/.config" >> ~/.bashrc
 
+# Make my default 'code' directory
 mkdir -p $HOME/code
 
 # elevating permissions
@@ -24,14 +28,12 @@ sudo echo "root hard nofile 1000000" | sudo tee -a /etc/security/limits.conf
 echo "Updating /etc/sysctl.d/60-file-max.conf"
 sudo echo "fs.file-max=1000000" | sudo tee /etc/sysctl.d/60-file-max.conf
 
-
 echo "Updating /etc/systemd/system.conf"
 sudo echo "DefaultLimitNOFILE=1000000" | sudo tee -a /etc/systemd/system.conf
 
 echo "Updating /etc/sysctl.conf"
 sudo echo "fs.inotify.max_user_watches=1000000" | sudo tee -a /etc/sysctl.conf
 sudo echo "fs.inotify.max_user_instances=1000000" | sudo tee -a /etc/sysctl.conf
-
 sudo sysctl -p
 
 echo "Done."
@@ -45,10 +47,10 @@ sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install neovim -y
 
-mkdir -p $HOME/.config/nvim
+mkdir -p $XDG_CONFIG_HOME/nvim
 
 # clone my neovim config
-git clone https://github.com/urbanspr1nter/kickstart.nvim.git $HOME/.config/nvim
+git clone https://github.com/urbanspr1nter/kickstart.nvim.git $XDG_CONFIG_HOME/nvim
 
 # Add my name as default for git commits
 git config --global user.name "Roger Ngo"
@@ -90,6 +92,28 @@ if [ ! -f /usr/bin/docker ]; then
     # refresh changes
     newgrp docker
 fi
+
+
+# Tmux
+if [ ! -f /usr/bin/tmux ]; then
+    sudo apt install tmux -y
+fi
+
+# tmux plugin manager
+mkdir -p $HOME/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+mkdir -p $XDG_CONFIG_HOME/tmux
+# tmux catppuccin theme
+echo "set -g @plugin 'catppuccin/tmux'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+
+# tmux plugin manager configuration 
+echo "set -g @plugin 'tmux-plugins/tpm'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+
+# create a symbolic link
+ln -s $XDG_CONFIG_HOME/tmux/tmux.conf $HOME/.tmux.conf
 
 
 echo "You should reboot now."
