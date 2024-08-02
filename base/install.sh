@@ -103,17 +103,17 @@ fi
 mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-mkdir -p $XDG_CONFIG_HOME/tmux
+mkdir -p $HOME/.config/tmux
 # tmux catppuccin theme
-echo "set -g @plugin 'catppuccin/tmux'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
 
 # tmux plugin manager configuration 
-echo "set -g @plugin 'tmux-plugins/tpm'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
-echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
-echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $XDG_CONFIG_HOME/tmux/tmux.conf
+echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
+echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
+echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
 
 # create a symbolic link
-ln -s $XDG_CONFIG_HOME/tmux/tmux.conf $HOME/.tmux.conf
+ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
 
 
 echo "You should reboot now."
