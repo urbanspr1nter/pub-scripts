@@ -116,4 +116,20 @@ echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
 ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
 
 
+# Fonts!
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip -O $HOME/CascadiaCode.zip
+mkdir -p $HOME/post-install-temp
+unzip $HOME/CascadiaCode.zip -d $HOME/post-install-temp
+
+sudo mv $HOME/post-install-temp/*.ttf /usr/share/fonts
+sudo fc-cache -f -v
+
+# clean up the font installation files
+rm $HOME/CascadiaCode.zip
+rm -rf $HOME/post-install-temp
+
+
+# Gnome Terminal Theme
+curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.3.0/install.py | python3 -
+
 echo "You should reboot now."
