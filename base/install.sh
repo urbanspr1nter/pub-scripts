@@ -97,23 +97,23 @@ fi
 # Tmux
 if [ ! -f /usr/bin/tmux ]; then
     sudo apt install tmux -y
+
+    # tmux plugin manager
+    mkdir -p $HOME/.tmux/plugins
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+    mkdir -p $HOME/.config/tmux
+    # tmux catppuccin theme
+    echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
+
+    # tmux plugin manager configuration 
+    echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
+    echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
+    echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
+
+    # create a symbolic link
+    ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
 fi
-
-# tmux plugin manager
-mkdir -p $HOME/.tmux/plugins
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
-mkdir -p $HOME/.config/tmux
-# tmux catppuccin theme
-echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
-
-# tmux plugin manager configuration 
-echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
-echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
-echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
-
-# create a symbolic link
-ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
 
 
 # Fonts!
