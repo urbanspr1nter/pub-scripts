@@ -1,3 +1,8 @@
+# Always start tmux when starting bash
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  tmux a -t default || exec tmux new -s default && exit;
+fi
+
 alias vim=nvim
 
 export EDITOR=vim
