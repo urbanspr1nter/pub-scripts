@@ -67,6 +67,14 @@ if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
     sudo echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="0d8c", ATTRS{idProduct}=="0016", ATTR{authorized}="0"' | sudo tee /etc/udev/rules.d/80-l1-kvm-audio.rules
 fi 
 
+# Install Volta, Node and yarn 1.22.22
+if [ ! -f $HOME/.volta/bin/volta ]; then
+    curl https://get.volta.sh | bash
+
+    $HOME/.volta/bin/volta install node@22.2.0
+    $HOME/.volta/bin/volta install yarn@1.22.22
+fi
+
 # Install docker if this system already does not have it
 if [ ! -f /usr/bin/docker ]; then
     # setup the docker repos
