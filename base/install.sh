@@ -15,8 +15,11 @@ sudo echo "Elevating..."
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
 sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
 sudo apt install libglfw3-dev libcapstone-dev -y
-sudo apt install brightnessctl
 
+# i3 tiling window stuff
+sudo apt install brightnessctl feh -y
+
+# make so that you don't need to be root for brightnessctl
 sudo usermod -aG video $USER
 
 # increase file limits
@@ -142,5 +145,12 @@ rm -rf $HOME/post-install-temp
 
 # Gnome Terminal Theme
 curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.3.0/install.py | python3 -
+
+
+# Finally, ulauncher
+sudo add-apt-repository universe -y
+sudo add-apt-repository ppa:agornostal/ulauncher -y 
+sudo apt update
+sudo apt install ulauncher -y
 
 echo "You should reboot now."
