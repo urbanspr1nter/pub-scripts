@@ -15,6 +15,9 @@ sudo echo "Elevating..."
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
 sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
 sudo apt install libglfw3-dev libcapstone-dev -y
+sudo apt install brightnessctl
+
+sudo usermod -aG video $USER
 
 # increase file limits
 echo "Updating /etc/security/limits.conf ..."
