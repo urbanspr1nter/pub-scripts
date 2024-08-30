@@ -25,7 +25,7 @@
 
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "custom/hostname"],
-    "modules-right": [ "tray", "custom/audio","network","battery","clock"],
+    "modules-right": [ "tray", "backlight", "custom/audio","network","battery","clock"],
 
     // Configuration for individual modules
      "sway/workspaces": {
@@ -79,7 +79,11 @@
         "exec": "/home/rngo/.config/sway/audio.sh",
         "on-click": "pavucontrol",
     },
-
+		"backlight": {
+			"device": "intel_backlight",
+			"format": "{icon} {percent}%",
+			"format-icons": ["", ""]
+		},
     "custom/hostname": {
         "format": "🖳  {}",
         "exec": "/usr/bin/hostname -f",

@@ -12,6 +12,9 @@
 # pressing Super + Shift + C.                                                      #
 #==================================================================================#
 
+
+exec_always --no-startup-id ulauncher
+
 include catppuccin-mocha
 
 #========================#
@@ -35,10 +38,10 @@ gaps outer 3
 default_border pixel 6 
 
 # Output resolution
-output eDP-1 scale 1.0
+output eDP-1 scale 1.50
 
 # Set the Wallpaper:
-output * bg $HOME/Pictures/wallpaper.jpg fill
+output * bg $HOME/Pictures/Wallpaper/catppuccin.jpg fill
 
 #====================================#
 # Activate the panel                 #
@@ -226,15 +229,15 @@ bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pk
 bindsym XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 waybar"
 
 # Brightness
-bindsym XF86MonBrightnessDown exec light -U 10
-bindsym XF86MonBrightnessUp exec light -A 10
-
+bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl --device intel_backlight --min-val=2 -q set 5%-"
+bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl --device intel_backlight -q set 5%+"
 
 #=============================================#
 # Keyboard Shortcuts (launching applications) #
 #=============================================#
 # Set up wofi to replace dmenu as the launcher of choice:
-set $menu wofi --show drun  -i | xargs swaymsg exec --
+# set $menu wofi --show drun  -i | xargs swaymsg exec --
+set $menu ulauncher-toggle
 
 # Launch your browser:
 bindsym $mod+shift+b exec firefox
@@ -243,7 +246,7 @@ bindsym $mod+shift+b exec firefox
 bindsym ctrl+$mod+f exec pcmanfm
 
 # Open a terminal emulator:
-set $term alacritty
+set $term gnome-terminal 
 bindsym $mod+Return exec $term
 
 # Kill focused window:
