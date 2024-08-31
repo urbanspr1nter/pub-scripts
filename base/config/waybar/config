@@ -25,7 +25,7 @@
 
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "custom/hostname"],
-    "modules-right": [ "tray", "backlight", "custom/audio","network","battery","clock"],
+    "modules-right": [ "tray", "memory", "backlight", "custom/audio","network","battery","clock"],
 
     // Configuration for individual modules
      "sway/workspaces": {
@@ -83,6 +83,10 @@
 			"device": "intel_backlight",
 			"format": "{icon} {percent}%",
 			"format-icons": ["", ""]
+		},
+		"memory": {
+			"interval": 3,
+			"format": "🧠 [{used:0.1f}G / {total:0.1f}G]"
 		},
     "custom/hostname": {
         "format": "🖳  {}",
