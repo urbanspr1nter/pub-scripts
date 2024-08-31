@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PWD=$(pwd)
+
 # Configure XDG_CONFIG_HOME
 XDG_CONFIG_HOME=$HOME/.config
 mkdir -p $XDG_CONFIG_HOME
@@ -15,12 +17,6 @@ sudo echo "Elevating..."
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
 sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
 sudo apt install libglfw3-dev libcapstone-dev -y
-
-# i3 tiling window stuff
-sudo apt install brightnessctl feh -y
-
-# make so that you don't need to be root for brightnessctl
-sudo usermod -aG video $USER
 
 # increase file limits
 echo "Updating /etc/security/limits.conf ..."
@@ -74,13 +70,13 @@ if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
 fi 
 
 # Install Volta, Node and yarn 1.22.22
-if [ ! -f $HOME/.volta/bin/volta ]; then
-    curl https://get.volta.sh | bash
-
-    $HOME/.volta/bin/volta install node@22.2.0
-    $HOME/.volta/bin/volta install yarn@1.22.22
-fi
-
+#if [ ! -f $HOME/.volta/bin/volta ]; then
+#    curl https://get.volta.sh
+#
+#    $HOME/.volta/bin/volta install node@22.2.0
+#    $HOME/.volta/bin/volta install yarn@1.22.22
+#fi
+#
 # Install docker if this system already does not have it
 if [ ! -f /usr/bin/docker ]; then
     # setup the docker repos
@@ -109,26 +105,26 @@ fi
 
 
 # Tmux
-if [ ! -f /usr/bin/tmux ]; then
-    sudo apt install tmux -y
-
-    # tmux plugin manager
-    mkdir -p $HOME/.tmux/plugins
-    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
-    mkdir -p $HOME/.config/tmux
-    # tmux catppuccin theme
-    echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
-
-    # tmux plugin manager configuration 
-    echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
-    echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
-    echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
-
-    # create a symbolic link
-    ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
-fi
-
+#if [ ! -f /usr/bin/tmux ]; then
+#    sudo apt install tmux -y
+#
+#    # tmux plugin manager
+#    mkdir -p $HOME/.tmux/plugins
+#    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+#
+#    mkdir -p $HOME/.config/tmux
+#    # tmux catppuccin theme
+#    echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
+#
+#    # tmux plugin manager configuration 
+#    echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
+#    echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
+#    echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
+#
+#    # create a symbolic link
+#    ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
+#fi
+#
 
 # Fonts!
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip -O $HOME/CascadiaCode.zip
@@ -147,10 +143,7 @@ rm -rf $HOME/post-install-temp
 curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.3.0/install.py | python3 -
 
 
-# Finally, ulauncher
-sudo add-apt-repository universe -y
-sudo add-apt-repository ppa:agornostal/ulauncher -y 
-sudo apt update
-sudo apt install ulauncher -y
+# Install sway window manager and all dependencies
+source $PWD/sway.sh
 
 echo "You should reboot now."
