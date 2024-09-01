@@ -19,26 +19,7 @@ sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
 sudo apt install libglfw3-dev libcapstone-dev -y
 
 # increase file limits
-echo "Updating /etc/security/limits.conf ..."
-sudo echo "*    soft nofile 1000000" | sudo tee -a /etc/security/limits.conf
-sudo echo "*    hard nofile 1000000" | sudo tee -a /etc/security/limits.conf
-sudo echo "$USER soft nofile 1000000" | sudo tee -a /etc/security/limits.conf
-sudo echo "$USER hard nofile 1000000" | sudo tee -a /etc/security/limits.conf
-sudo echo "root soft nofile 1000000" | sudo tee -a /etc/security/limits.conf
-sudo echo "root hard nofile 1000000" | sudo tee -a /etc/security/limits.conf
-
-echo "Updating /etc/sysctl.d/60-file-max.conf"
-sudo echo "fs.file-max=1000000" | sudo tee /etc/sysctl.d/60-file-max.conf
-
-echo "Updating /etc/systemd/system.conf"
-sudo echo "DefaultLimitNOFILE=1000000" | sudo tee -a /etc/systemd/system.conf
-
-echo "Updating /etc/sysctl.conf"
-sudo echo "fs.inotify.max_user_watches=1000000" | sudo tee -a /etc/sysctl.conf
-sudo echo "fs.inotify.max_user_instances=1000000" | sudo tee -a /etc/sysctl.conf
-sudo sysctl -p
-
-echo "Done."
+source $PWD/fs-limits.sh
 
 # ripgrep and xclip
 sudo apt install ripgrep xclip -y
@@ -95,12 +76,6 @@ if [ ! -f /usr/bin/docker ]; then
 
 
     sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
-    # make non-root docker usage possible
-    sudo usermod -aG docker $USER
-
-    # refresh changes
-    newgrp docker
 fi
 
 

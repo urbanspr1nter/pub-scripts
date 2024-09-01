@@ -6,10 +6,6 @@ sudo echo "Elevating privileges..."
 
 sudo apt install brightnessctl light sway swaybg swayidle swayimg swaylock waybar wofi fonts-font-awesome -y
 
-# add the current user to video group so that brightnessctl can work without sudo
-sudo usermod -aG video $USER
-newgrp video
-
 mkdir -p $HOME/.config/sway $HOME/.config/waybar $HOME/.config/wofi
 
 # copy sway config
