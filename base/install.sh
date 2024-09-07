@@ -14,16 +14,12 @@ mkdir -p $HOME/code
 sudo echo "Elevating..."
 
 # install the most essential things
-sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks -y
-sudo apt install cscope libncurses-dev libssl-dev libelf-dev bison flex -y
-sudo apt install libglfw3-dev libcapstone-dev -y
-sudo apt install pasystray pavucontrol
+sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks \
+    cscope libncurses-dev libssl-dev libelf-dev bison flex \
+    libglfw3-dev libcapstone-dev pavucontrol ripgrep xclip -y
 
 # increase file limits
 source $PWD/fs-limits.sh
-
-# ripgrep and xclip
-sudo apt install ripgrep xclip -y
 
 # neovim!
 sudo apt install software-properties-common -y
@@ -52,13 +48,13 @@ if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
 fi 
 
 # Install Volta, Node and yarn 1.22.22
-#if [ ! -f $HOME/.volta/bin/volta ]; then
-#    curl https://get.volta.sh
-#
-#    $HOME/.volta/bin/volta install node@22.2.0
-#    $HOME/.volta/bin/volta install yarn@1.22.22
-#fi
-#
+if [ ! -f $HOME/.volta/bin/volta ]; then
+    curl https://get.volta.sh | bash
+
+    $HOME/.volta/bin/volta install node@22.2.0
+    $HOME/.volta/bin/volta install yarn@1.22.22
+fi
+
 # Install docker if this system already does not have it
 if [ ! -f /usr/bin/docker ]; then
     # setup the docker repos
@@ -74,7 +70,6 @@ if [ ! -f /usr/bin/docker ]; then
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
 
     sudo apt update
-
 
     sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 fi
@@ -114,12 +109,16 @@ sudo fc-cache -f -v
 rm $HOME/CascadiaCode.zip
 rm -rf $HOME/post-install-temp
 
-
 # Gnome Terminal Theme
 curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.3.0/install.py | python3 -
 
+# install ulauncher
+sudo add-apt-repository universe -y
+sudo add-apt-repository ppa:agornostal/ulauncher -y 
+sudo apt update
+sudo apt install ulauncher -y
 
-# Install sway window manager and all dependencies
-source $PWD/sway.sh
+# setup the catppuccin ulauncher theme
+python3 <(curl https://raw.githubusercontent.com/catppuccin/ulauncher/main/install.py -fsSL)
 
 echo "You should reboot now."
