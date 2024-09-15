@@ -1,31 +1,14 @@
-//====================================================================================================//
-// Waybar Configuration File                                                                          //
-//----------------------------------------------------------------------------------------------------//
-// Purpose: Creates a minimalistic (yet functional) waybar at                                         //
-// the top of the screen.                                                                             //
-// themes and colors, set the wallpaper, and more.                                                    //
-//                                                                                                    //
-// License: Creative Commons Attribution 4.0 International                                            //
-//                                                                                                    //
-// Credit:                                                                                            //
-// Battery section adapted from:                                                                      //
-// https://github.com/Egosummiki/dotfiles/blob/master/waybar/config                                   //
-//                                                                                                    //
-// Pipewire audio adapted from:                                                                       //
-// https://www.reddit.com/r/swaywm/comments/sks343/pwvolume_pipewire_volume_control_and_waybar_module //
-//====================================================================================================//
-
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
+    "height": 41,
     "spacing": 4,
     "margin-top": 0,
     "margin-bottom": 0,
 
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "custom/hostname"],
-    "modules-right": [ "tray", "memory", "backlight", "custom/audio","network","battery","clock"],
+    "modules-right": [ "tray", "memory", "backlight","network","battery","custom/audio", "clock"],
 
     // Configuration for individual modules
      "sway/workspaces": {
@@ -58,12 +41,12 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": ["", "", "", "", "🔋"],
     },
 
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " {signalStrength}%",
+        "format-wifi": "🪐 {signalStrength}%",
         "format-ethernet": "Connected  ",
         "tooltip-format": "{ifname}: {gwaddr}",
         "format-linked": "{ifname} (No IP)",
@@ -73,23 +56,22 @@
     },
 
     "custom/audio": {
-        "format": "{}",
+        "format": "🔉",
         "signal": 8,
         "interval": "once",
-        "exec": "/home/rngo/.config/sway/audio.sh",
         "on-click": "pavucontrol",
     },
-		"backlight": {
-			"device": "intel_backlight",
-			"format": "{icon} {percent}%",
-			"format-icons": ["", ""]
-		},
-		"memory": {
-			"interval": 3,
-			"format": "🧠 [{used:0.1f}G / {total:0.1f}G]"
-		},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{icon} {percent}%",
+		"format-icons": ["🔅", "🔆"]
+	},
+	"memory": {
+		"interval": 3,
+		"format": "🧠 [{used:0.1f}G / {total:0.1f}G]"
+	},
     "custom/hostname": {
-        "format": "🖳  {}",
+        "format": " 💻 {}",
         "exec": "/usr/bin/hostname -f",
         "interval": "once",
         "on-click": "btop",
