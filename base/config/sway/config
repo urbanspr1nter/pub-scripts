@@ -1,18 +1,3 @@
-# Ansible managed message here
-
-#==================================================================================#
-# Sway Window Manager Configuration File                                           #
-#----------------------------------------------------------------------------------#
-# Purpose: This configuration file enables you to tweak keyboard shortcuts, adjust #
-# themes and colors, set the wallpaper, and more.                                  #
-#                                                                                  #
-# License: Creative Commons Attribution 4.0 International                          #
-#                                                                                  #
-# Pro-tip: While using Sway, you can trigger this configuration to be re-read by   #
-# pressing Super + Shift + C.                                                      #
-#==================================================================================#
-
-
 exec_always --no-startup-id ulauncher
 
 include catppuccin-mocha
@@ -35,7 +20,7 @@ gaps inner 8
 gaps outer 3
 
 # Configure the default border:
-default_border pixel 6 
+default_border pixel 4 
 
 # Output resolution
 output eDP-1 scale 2.0
@@ -79,7 +64,7 @@ bindsym $mod+Shift+e exec $HOME/.config/sway/exit.sh
 # Screen locking (automatic, with a timeout)
 set $lock swaylock -c 550000
 exec swayidle -w \
-    timeout 600 $lock \
+    timeout 1200 $lock \
     timeout 570 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep $lock
@@ -99,10 +84,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Move focus to another window ("cult of vim" version):
-bindsym $mod+j focus down
-bindsym $mod+h focus left
-bindsym $mod+l focus right
-bindsym $mod+k focus up
+#bindsym $mod+j focus down
+#bindsym $mod+h focus left
+#bindsym $mod+l focus right
+#bindsym $mod+k focus up
 
 # Move the window:
 bindsym $mod+Shift+Left move left
@@ -124,16 +109,16 @@ floating_modifier $mod normal
 # Resizing containers:
 mode "resize" {
     # Resize windows with arrow keys:
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 16px
+    bindsym Down resize grow height 16px
+    bindsym Up resize shrink height 16px
+    bindsym Right resize grow width 16px
 
     # "cult of vim" version:
-    bindsym h resize shrink width 10px
-    bindsym j resize grow height 10px
-    bindsym k resize shrink height 10px
-    bindsym l resize grow width 10px
+    bindsym h resize shrink width 16px
+    bindsym j resize grow height 16px
+    bindsym k resize shrink height 16px
+    bindsym l resize grow width 16px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -185,7 +170,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
-bindsym $mod+b splith
+bindsym $mod+h splith
 bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
@@ -238,6 +223,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl --device intel_b
 # Set up wofi to replace dmenu as the launcher of choice:
 # set $menu wofi --show drun  -i | xargs swaymsg exec --
 set $menu ulauncher-toggle
+set $menu_alt wofi --show drun -i | xargs swaymsg exec --
 
 # Launch your browser:
 bindsym $mod+shift+b exec firefox
@@ -253,7 +239,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 # Open the application launcher:
-bindsym $mod+space exec $menu
+bindsym $mod+space exec $menu_alt
 
 # Open the application launcher (alternate version):
 bindsym $mod+d exec $menu
