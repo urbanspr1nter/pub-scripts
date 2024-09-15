@@ -38,7 +38,7 @@ gaps outer 3
 default_border pixel 6 
 
 # Output resolution
-output eDP-1 scale 1.50
+output eDP-1 scale 2.0
 
 # Set the Wallpaper:
 output * bg $HOME/Pictures/Wallpaper/catppuccin.jpg fill
@@ -224,9 +224,9 @@ bindsym $mod+minus scratchpad show
 # Keyboard Shortcuts (Hardware) #
 #===============================#
 # Audio
-bindsym XF86AudioRaiseVolume exec "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+; pkill -RTMIN+8 waybar"
-bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; pkill -RTMIN+8 waybar"
-bindsym XF86AudioMute exec "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 waybar"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 # Brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl --device intel_backlight --min-val=2 -q set 5%-"
