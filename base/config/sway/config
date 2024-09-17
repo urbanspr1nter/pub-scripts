@@ -1,5 +1,7 @@
 exec_always --no-startup-id ulauncher
 
+font pango:CaskaydiaCove Nerd Font Mono 16
+
 include catppuccin-mocha
 
 #========================#
@@ -20,10 +22,10 @@ gaps inner 8
 gaps outer 3
 
 # Configure the default border:
-default_border pixel 4 
+default_border normal
 
 # Output resolution
-output eDP-1 scale 2.0
+output DP-1 scale 1.15
 
 # Set the Wallpaper:
 output * bg $HOME/Pictures/Wallpaper/catppuccin.jpg fill
@@ -33,7 +35,9 @@ output * bg $HOME/Pictures/Wallpaper/catppuccin.jpg fill
 #====================================#
 # Set the waybar command for the application launcher:
 bar {
-    swaybar_command waybar
+    # swaybar_command waybar
+		status_command i3status -c /home/rngo/.config/i3status/config
+		position top
 }
 
 
@@ -243,6 +247,13 @@ bindsym $mod+space exec $menu_alt
 
 # Open the application launcher (alternate version):
 bindsym $mod+d exec $menu
+
+# Screenshot a window
+bindsym $mod+Print+w exec /home/rngo/.local/bin/sway-screeenshot/sway-screenshot -m window --clipboard-only
+# Screenshot a monitor
+bindsym $mod+Print exec /home/rngo/.local/bin/sway-screenshot/sway-screenshot -m output --clipboard-only
+# Screenshot a region
+bindsym $mod+Shift+z exec /home/rngo/.local/bin/sway-screenshot/sway-screenshot -m region --clipboard-only
 
 #======#
 # Misc #
