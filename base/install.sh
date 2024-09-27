@@ -123,5 +123,6 @@ sudo apt install ulauncher -y
 python3 <(curl https://raw.githubusercontent.com/catppuccin/ulauncher/main/install.py -fsSL)
 
 source $PWD/tools/flatpak/install.sh
+source $PWD/i3.sh
 
 echo "You should reboot now."
