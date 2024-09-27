@@ -16,7 +16,8 @@ sudo echo "Elevating..."
 # install the most essential things
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks \
     cscope libncurses-dev libssl-dev libelf-dev bison flex \
-    libglfw3-dev libcapstone-dev pavucontrol ripgrep xclip -y
+    libglfw3-dev libcapstone-dev ripgrep xclip \
+    feh pavucontrol pasystray -y
 
 # increase file limits
 source $PWD/fs-limits.sh
@@ -120,5 +121,7 @@ sudo apt install ulauncher -y
 
 # setup the catppuccin ulauncher theme
 python3 <(curl https://raw.githubusercontent.com/catppuccin/ulauncher/main/install.py -fsSL)
+
+source $PWD/tools/flatpak/install.sh
 
 echo "You should reboot now."
