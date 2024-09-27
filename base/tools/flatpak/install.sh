@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt install flatpak -y
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo -y
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.flameshot.Flameshot -y
