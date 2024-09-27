@@ -13,3 +13,7 @@ cp $PWD/config/i3status/config $HOME/.config/i3status
 # set up the wallpaper
 mkdir -p $HOME/Pictures/Wallpaper
 cp $PWD/wallpapers/catppuccin.jpg $HOME/Pictures/Wallpaper
+
+# Setup Xresources
+
+cp $PWD/Xresources $HOME/.Xresources
