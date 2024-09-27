@@ -17,7 +17,15 @@ sudo echo "Elevating..."
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks \
     cscope libncurses-dev libssl-dev libelf-dev bison flex \
     libglfw3-dev libcapstone-dev ripgrep xclip \
-    feh pavucontrol pasystray -y
+    feh pavucontrol pasystray brightnessctl -y
+
+sudo usermod -aG video $USER
+
+# Git lfs
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+
+# increase http.postBuffer size to 512MB
+git config --global http.postBuffer 536870912
 
 # increase file limits
 source $PWD/fs-limits.sh
@@ -35,12 +43,6 @@ git clone https://github.com/urbanspr1nter/kickstart.nvim.git $XDG_CONFIG_HOME/n
 
 # Add my name as default for git commits
 git config --global user.name "Roger Ngo"
-
-# always need flatpak
-# sudo apt install flatpak -y
-# sudo apt install gnome-software-plugin-flatpak -y
-# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
 
 if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
     # create a known udev rule to address my KVM audio issues. see 80-l1-kvm-audio.rules for more info, but
@@ -73,30 +75,14 @@ if [ ! -f /usr/bin/docker ]; then
     sudo apt update
 
     sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+    sudo usermod -aG docker $USER
 fi
 
-
 # Tmux
-#if [ ! -f /usr/bin/tmux ]; then
-#    sudo apt install tmux -y
-#
-#    # tmux plugin manager
-#    mkdir -p $HOME/.tmux/plugins
-#    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-#
-#    mkdir -p $HOME/.config/tmux
-#    # tmux catppuccin theme
-#    echo "set -g @plugin 'catppuccin/tmux'" >> $HOME/.config/tmux/tmux.conf
-#
-#    # tmux plugin manager configuration 
-#    echo "set -g @plugin 'tmux-plugins/tpm'" >> $HOME/.config/tmux/tmux.conf
-#    echo "set -g @plugin 'tmux-plugins/tmux-sensible'" >> $HOME/.config/tmux/tmux.conf
-#    echo "run '$HOME/.tmux/plugins/tpm/tpm'" >> $HOME/.config/tmux/tmux.conf
-#
-#    # create a symbolic link
-#    ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
-#fi
-#
+source $PWD/tools/tmux/install.sh
+cp $PWD/tools/tmux/tmux.conf $HOME/.config/tmux
+ln -s $HOME/.config/tmux/tmux.conf $HOME/.tmux.conf
 
 # Fonts!
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip -O $HOME/CascadiaCode.zip
