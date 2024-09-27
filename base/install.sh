@@ -17,7 +17,7 @@ sudo echo "Elevating..."
 sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks \
     cscope libncurses-dev libssl-dev libelf-dev bison flex \
     libglfw3-dev libcapstone-dev ripgrep xclip \
-    feh pavucontrol pasystray -y
+    feh pavucontrol pasystray xrandr -y
 
 # increase file limits
 source $PWD/fs-limits.sh
