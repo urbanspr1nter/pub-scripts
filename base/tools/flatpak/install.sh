@@ -9,3 +9,4 @@ flatpak install flathub org.mozilla.Thunderbird -y
 flatpak install flathub fr.handbrake.ghb -y
 flatpak install flathub org.gimp.GIMP -y
 flatpak install flathub org.kde.kdenlive -y
+flatpak install flathub org.keepassxc.KeePassXC
