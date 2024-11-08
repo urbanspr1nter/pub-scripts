@@ -8,14 +8,13 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # include /home/rngo/.config/i3/theme
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:CaskaydiaCove Nerd Font Mono 12
+font pango:MonoLisa Variable 12
 
 exec_always --no-startup-id "xmodmap ~/.Xmodmap"
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -62,7 +61,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec warp-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -205,11 +205,13 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-      status_command i3status -c /home/rngo/.config/i3status/config
-			position top
-}
 
+#bar {
+#      status_command i3status -c /home/rngo/.config/i3status/config
+#			position top
+#}
+
+exec_always --no-startup-id bash /home/rngo/code/pub-scripts/base/polybar.sh
 
 exec_always --no-startup-id feh --bg-scale /home/rngo/Pictures/Wallpaper/catppuccin.jpg
 exec_always --no-startup-id flatpak run org.flameshot.Flameshot
