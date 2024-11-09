@@ -112,10 +112,10 @@ source $PWD/tools/flatpak/install.sh
 source $PWD/tools/snap/install.sh
 source $PWD/i3.sh
 
-source $PWD/tools/brew/install.sh
+# source $PWD/tools/brew/install.sh
 
 # watchman
-brew install watchman
-cp $PWD/watchmanconfig $HOME/.watchmanconfig
+# brew install watchman
+# cp $PWD/watchmanconfig $HOME/.watchmanconfig
 
 echo "You should reboot now."
