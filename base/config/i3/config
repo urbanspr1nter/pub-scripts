@@ -58,7 +58,7 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+#tiling_drag modifier titlebar
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
@@ -172,8 +172,14 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+Control+1 exec "xrandr --output DP-1 --auto --above eDP-1"
-bindsym $mod+Control+2 exec "xrandr --output eDP-1 --primary --mode 1920x1200 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-1 --off --output DP-3 --off"
-bindsym $mod+Control+3 exec "xrandr --output eDP-1 --off --output DP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-2 --off --output HDMI-1 --off --output DP-3 --off"
+# For the framework laptop 
+bindsym $mod+Control+2 exec "xrandr --output eDP-1 --primary --mode 2880x1920 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output DP-3 --off --output DP-4 --off"
+# for the framework laptop
+bindsym $mod+Control+3 exec "xrandr --output eDP-1 --off --output DP-4 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --off --output DP-1 --off"
+# For the lemur pro
+#bindsym $mod+Control+2 exec "xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-1 --off --output DP-3 --off"
+# For the lemur pro
+# bindsym $mod+Control+3 exec "xrandr --output eDP-1 --off --output DP-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-2 --off --output HDMI-1 --off --output DP-3 --off"
 bindsym $mod+Control+4 exec "xrandr -s 0"
 
 # resize window (you can also use the mouse for that)
