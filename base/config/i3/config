@@ -10,6 +10,15 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
+# Colors
+client.focused          #ffccff #b3b3ff #121212 #2e9ef4   #b3b3ff
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 # include /home/rngo/.config/i3/theme
 
 # Font for window titles. Will also be used by the bar unless a different font
