@@ -21,9 +21,6 @@ sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks
 
 sudo usermod -aG video $USER
 
-# Git lfs
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-
 # increase http.postBuffer size to 512MB
 git config --global http.postBuffer 536870912
 
@@ -39,10 +36,11 @@ sudo apt install neovim -y
 mkdir -p $XDG_CONFIG_HOME/nvim
 
 # clone my neovim config
-git clone https://github.com/urbanspr1nter/kickstart.nvim.git $XDG_CONFIG_HOME/nvim
+git clone git@github.com:urbanspr1nter/kickstart.nvim.git $XDG_CONFIG_HOME/nvim
 
 # Add my name as default for git commits
 git config --global user.name "Roger Ngo"
+git config --global user.email "urbanspr1nter@gmail.com"
 
 if [ ! -f /etc/udev/rules.d/80-l1-kvm-audio.rules ]; then
     # create a known udev rule to address my KVM audio issues. see 80-l1-kvm-audio.rules for more info, but
@@ -112,10 +110,6 @@ source $PWD/tools/flatpak/install.sh
 source $PWD/tools/snap/install.sh
 source $PWD/i3.sh
 
-# source $PWD/tools/brew/install.sh
-
-# watchman
-# brew install watchman
-# cp $PWD/watchmanconfig $HOME/.watchmanconfig
+cp $PWD/watchmanconfig $HOME/.watchmanconfig
 
 echo "You should reboot now."
