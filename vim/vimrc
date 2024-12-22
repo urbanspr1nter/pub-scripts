@@ -1,0 +1,63 @@
+" Disable compatibility with vi. Can cause issues. We don't care about vi.
+set nocompatible
+
+" Enable filetype detection
+filetype on
+
+" Enable plugins and load plugin for the detected file type
+filetype plugin on
+
+set cursorline
+
+let mapleader=' '
+
+set number relativenumber
+syntax on
+set encoding=utf-8
+
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set noshiftround
+
+" Set highlighting when doing a search
+set hlsearch
+
+" Set the commands to save in history
+set history=10000
+
+" Enable autocomplete menu after pressing TAB
+set wildmenu
+
+set termguicolors
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+" Everything about plugins go here
+
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
+
+" Run the install.py script under the plugin directory with --cland-completer
+" --ts-completer
+Plug 'Valloric/YouCompleteMe'
+
+call plug#end()
+
+colorscheme catppuccin_mocha
+
+" Lightline status bar
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+			\ 'colorscheme': 'wombat',
+			\ 'background': 'dark',
+			\ }
+
+nnoremap <leader>sf :Files<Return>
+nnoremap <leader>sg :RG<Return>

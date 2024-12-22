@@ -14,12 +14,12 @@ mkdir -p $HOME/code
 sudo echo "Elevating..."
 
 # install the most essential things
-sudo apt install curl vim build-essential git git-email python3-pip gnome-tweaks \
-    cscope libncurses-dev libssl-dev libelf-dev bison flex \
+sudo apt install curl vim build-essential git git-email python3-pip cmake \
+    cscope libncurses-dev libssl-dev libelf-dev bison flex python3-venv \
     libglfw3-dev libcapstone-dev ripgrep xclip \
-    feh pavucontrol pasystray brightnessctl -y
+    feh pavucontrol pasystray brightnessctl fzf bat -y
 
-sudo usermod -aG video $USER
+sudo usermod -aG video,render $USER
 
 # increase http.postBuffer size to 512MB
 git config --global http.postBuffer 536870912
