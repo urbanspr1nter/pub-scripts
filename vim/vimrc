@@ -60,4 +60,12 @@ let g:lightline = {
 			\ }
 
 nnoremap <leader>sf :Files<Return>
+nnoremap <leader>sh :Files $HOME<CR>
 nnoremap <leader>sg :RG<Return>
+nnoremap <leader>sb :Buffers<CR>
+nnoremap <left> <cmd>echo "!!! Use h to move left !!!"<CR>
+nnoremap <down> <cmd>echo "!!! Use j to move down !!!"<CR>
+nnoremap <up> <cmd>echo "!!! Use k to move up !!!"<CR>
+nnoremap <right> <cmd>echo "!!! Use l to move right !!!"<CR>
+nnoremap <leader>7 :bp<CR>
+nnoremap <leader>8 :bn<CR>
