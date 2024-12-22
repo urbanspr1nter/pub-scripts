@@ -13,11 +13,22 @@ mkdir -p $HOME/code
 # elevating permissions
 sudo echo "Elevating..."
 
+# Update all the important stuff
+sudo apt update
+sudo apt dist-upgrade -y
+sudo apt autoremove
+sudo snap refresh
+
 # install the most essential things
 sudo apt install curl vim build-essential git git-email python3-pip cmake \
     cscope libncurses-dev libssl-dev libelf-dev bison flex python3-venv \
-    libglfw3-dev libcapstone-dev ripgrep xclip \
+    git-lfs python3-dev libglfw3-dev libcapstone-dev ripgrep xclip \
     feh pavucontrol pasystray brightnessctl fzf bat -y
+
+# configure vim
+sudo echo "EDITOR=vim" >> /etc/environment
+mkdir -p $HOME/.vim $HOME/.vim/autoload $HOME/.vim/backup $HOME/.vim/colors $HOME/.vim/plugged
+cp $PWD/vimrc $HOME/.vimrc
 
 sudo usermod -aG video,render $USER
 
@@ -26,17 +37,6 @@ git config --global http.postBuffer 536870912
 
 # increase file limits
 source $PWD/fs-limits.sh
-
-# neovim!
-sudo apt install software-properties-common -y
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install neovim -y
-
-mkdir -p $XDG_CONFIG_HOME/nvim
-
-# clone my neovim config
-git clone git@github.com:urbanspr1nter/kickstart.nvim.git $XDG_CONFIG_HOME/nvim
 
 # Add my name as default for git commits
 git config --global user.name "Roger Ngo"
@@ -52,8 +52,10 @@ fi
 if [ ! -f $HOME/.volta/bin/volta ]; then
     curl https://get.volta.sh | bash
 
-    $HOME/.volta/bin/volta install node@22.2.0
+    $HOME/.volta/bin/volta install node@22.12.0
     $HOME/.volta/bin/volta install yarn@1.22.22
+
+	$HOME/.volta/bin/npm install -g prettier
 fi
 
 # Install docker if this system already does not have it
@@ -93,9 +95,6 @@ sudo fc-cache -f -v
 # clean up the font installation files
 rm $HOME/CascadiaCode.zip
 rm -rf $HOME/post-install-temp
-
-# Gnome Terminal Theme
-curl -L https://raw.githubusercontent.com/catppuccin/gnome-terminal/v0.3.0/install.py | python3 -
 
 # install ulauncher
 sudo add-apt-repository universe -y
