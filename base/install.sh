@@ -10,6 +10,9 @@ echo "export XDG_CONFIG_HOME=$HOME/.config" >> ~/.bashrc
 # Make my default 'code' directory
 mkdir -p $HOME/code
 
+# Make a general .bin directory
+mkdir -p $HOME/.bin
+
 # elevating permissions
 sudo echo "Elevating..."
 
