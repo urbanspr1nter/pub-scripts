@@ -12,3 +12,4 @@ flatpak install flathub org.gimp.GIMP -y
 flatpak install flathub org.kde.kdenlive -y
 flatpak install flathub org.keepassxc.KeePassXC -y
 flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.usebruno.Bruno -y

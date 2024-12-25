@@ -123,3 +123,6 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   tmux a -t default || exec tmux new -s default && exit;
 fi
 
+alias bat=batcat
+alias aidev="ssh rngo@192.168.1.101"
+alias devbox="ssh rngo@192.168.1.35"

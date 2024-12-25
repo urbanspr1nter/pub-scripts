@@ -23,7 +23,7 @@ sudo snap refresh
 sudo apt install curl vim build-essential git git-email python3-pip cmake \
     cscope libncurses-dev libssl-dev libelf-dev bison flex python3-venv \
     git-lfs python3-dev libglfw3-dev libcapstone-dev ripgrep xclip \
-    feh pavucontrol pasystray brightnessctl fzf bat -y
+    feh pavucontrol pasystray brightnessctl fzf bat alacritty -y
 
 # configure vim
 sudo echo "EDITOR=vim" >> /etc/environment
