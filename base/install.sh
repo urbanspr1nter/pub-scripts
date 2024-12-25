@@ -36,6 +36,10 @@ mkdir -p $HOME/.vim/after/syntax
 cp $PWD/tools/vim/after/syntax/c.vim $HOME/.vim/after/syntax
 cp $PWD/vimrc $HOME/.vimrc
 
+# vim plugged
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 sudo usermod -aG video,render $USER
 
 # increase http.postBuffer size to 512MB
