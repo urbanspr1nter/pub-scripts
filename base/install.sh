@@ -25,9 +25,15 @@ sudo apt install curl vim build-essential git git-email python3-pip cmake \
     git-lfs python3-dev libglfw3-dev libcapstone-dev ripgrep xclip \
     feh pavucontrol pasystray brightnessctl fzf bat alacritty -y
 
+# configure alacritty
+mkdir -p $HOME/.config/alacritty
+cp $PWD/config/alacritty/alacritty.toml $HOME/.config/alacritty
+
 # configure vim
 sudo echo "EDITOR=vim" >> /etc/environment
 mkdir -p $HOME/.vim $HOME/.vim/autoload $HOME/.vim/backup $HOME/.vim/colors $HOME/.vim/plugged
+mkdir -p $HOME/.vim/after/syntax
+cp $PWD/tools/vim/after/syntax/c.vim $HOME/.vim/after/syntax
 cp $PWD/vimrc $HOME/.vimrc
 
 sudo usermod -aG video,render $USER
