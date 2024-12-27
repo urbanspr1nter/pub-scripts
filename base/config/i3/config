@@ -65,9 +65,12 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 5%+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+floating_minimum_size 80 x 24
+floating_maximum_size 1200 x 800
+
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-#tiling_drag modifier titlebar
+tiling_drag modifier titlebar
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
@@ -218,6 +221,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+exec_always --no-startup-id feh --bg-scale /home/rngo/Pictures/Wallpaper/catppuccin.jpg
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
@@ -226,9 +231,11 @@ bar {
         position top
 }
 
+exec_always --no-startup-id flatpak run org.flameshot.Flameshot
+bindsym $mod+Shift+z exec "flatpak run org.flameshot.Flameshot gui"
+
+exec_always --no-startup-id bash /home/rngo/code/pub-scripts/base/pasystray-start.sh
+
 # exec_always --no-startup-id bash /home/rngo/code/pub-scripts/base/polybar.sh
 
-exec_always --no-startup-id feh --bg-scale /home/rngo/Pictures/Wallpaper/catppuccin.jpg
-exec_always --no-startup-id flatpak run org.flameshot.Flameshot
 
-bindsym $mod+Shift+z exec "flatpak run org.flameshot.Flameshot gui"
