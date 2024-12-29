@@ -61,6 +61,7 @@ let g:lightline = {
 			\ 'background': 'dark',
 			\ }
 
+nnoremap <leader><leader> :Buffers<CR>
 nnoremap <leader>sf :Files<Return>
 nnoremap <leader>sh :Files $HOME<CR>
 nnoremap <leader>sg :RG<Return>
